@@ -6,7 +6,6 @@ import com.cognizant.ormlearn.model.Stock;
 import com.cognizant.ormlearn.repository.StockRepository;
 import com.cognizant.ormlearn.service.CountryService;
 import com.cognizant.ormlearn.service.EmployeeService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -35,8 +34,11 @@ public class OrmLearnApplication implements CommandLineRunner {
     public void run(String... args) {
 
         testGetEmployee();
+        testGetEmployeesByDepartment();
+        testEmployeesBySalaryAndPermanent();
+        testNativeQuery();
 
-        // Needed appudu okkokati uncomment cheyyi:
+        // Uncomment when needed
         // testAddCountry();
         // testUpdateCountry();
         // testDeleteCountry();
@@ -56,19 +58,23 @@ public class OrmLearnApplication implements CommandLineRunner {
         System.out.println(employee);
 
         if (employee.getDepartment() != null) {
-            System.out.println(
-                    "Department: "
-                            + employee.getDepartment().getName()
-            );
+            System.out.println("Department: " + employee.getDepartment().getName());
         }
 
         if (employee.getSkills() != null) {
             System.out.println("Skills:");
-
             employee.getSkills().forEach(skill ->
                     System.out.println("- " + skill.getName())
             );
         }
+    }
+
+    private void testGetEmployeesByDepartment() {
+
+        System.out.println("\n--- Employees in IT Department ---");
+
+        employeeService.getEmployeesByDepartment("IT")
+                .forEach(System.out::println);
     }
 
     private void testAddCountry() {
@@ -89,10 +95,8 @@ public class OrmLearnApplication implements CommandLineRunner {
         Country savedCountry = countryService.getCountry("JP");
 
         System.out.println("Country Added Successfully");
-        System.out.println(
-                "Code: " + savedCountry.getCode()
-                        + ", Name: " + savedCountry.getName()
-        );
+        System.out.println("Code: " + savedCountry.getCode()
+                + ", Name: " + savedCountry.getName());
     }
 
     private void testUpdateCountry() {
@@ -110,10 +114,8 @@ public class OrmLearnApplication implements CommandLineRunner {
         Country updatedCountry = countryService.getCountry("JP");
 
         System.out.println("Country Updated Successfully");
-        System.out.println(
-                "Code: " + updatedCountry.getCode()
-                        + ", Name: " + updatedCountry.getName()
-        );
+        System.out.println("Code: " + updatedCountry.getCode()
+                + ", Name: " + updatedCountry.getName());
     }
 
     private void testDeleteCountry() {
@@ -121,9 +123,7 @@ public class OrmLearnApplication implements CommandLineRunner {
         Country country = countryService.getCountry("JP");
 
         if (country == null) {
-            System.out.println(
-                    "JP country already deleted or not found"
-            );
+            System.out.println("JP country already deleted or not found");
             return;
         }
 
@@ -134,17 +134,32 @@ public class OrmLearnApplication implements CommandLineRunner {
         Country deletedCountry = countryService.getCountry("JP");
 
         if (deletedCountry == null) {
-            System.out.println(
-                    "JP country is not present in database"
-            );
+            System.out.println("JP country is not present in database");
         }
+    }
+    private void testEmployeesBySalaryAndPermanent() {
+
+        System.out.println(
+                "\n--- Permanent Employees With Salary Above 60000 ---"
+        );
+
+        employeeService
+                .getEmployeesBySalaryAndPermanent(60000.0, true)
+                .forEach(System.out::println);
+    }
+
+    private void testNativeQuery() {
+
+        System.out.println("\n--- Native Query : Salary > 60000 ---");
+
+        employeeService
+                .getEmployeesWithSalaryGreaterThan(60000.0)
+                .forEach(System.out::println);
     }
 
     private void testStockQueries() {
 
-        System.out.println(
-                "\n--- Facebook Stocks: September 2019 ---"
-        );
+        System.out.println("\n--- Facebook Stocks: September 2019 ---");
 
         List<Stock> facebookStocks =
                 stockRepository.findByCodeAndDateBetween(
@@ -155,9 +170,7 @@ public class OrmLearnApplication implements CommandLineRunner {
 
         facebookStocks.forEach(System.out::println);
 
-        System.out.println(
-                "\n--- Google Stocks: Close Price Greater Than 1250 ---"
-        );
+        System.out.println("\n--- Google Stocks: Close Price Greater Than 1250 ---");
 
         List<Stock> googleStocks =
                 stockRepository.findByCodeAndCloseGreaterThan(
@@ -167,23 +180,17 @@ public class OrmLearnApplication implements CommandLineRunner {
 
         googleStocks.forEach(System.out::println);
 
-        System.out.println(
-                "\n--- Top 3 Highest Transaction Volumes ---"
-        );
+        System.out.println("\n--- Top 3 Highest Transaction Volumes ---");
 
         List<Stock> highestVolumeStocks =
                 stockRepository.findTop3ByOrderByVolumeDesc();
 
         highestVolumeStocks.forEach(System.out::println);
 
-        System.out.println(
-                "\n--- Netflix Lowest 3 Closing Prices ---"
-        );
+        System.out.println("\n--- Netflix Lowest 3 Closing Prices ---");
 
         List<Stock> lowestNetflixStocks =
-                stockRepository.findTop3ByCodeOrderByCloseAsc(
-                        "NFLX"
-                );
+                stockRepository.findTop3ByCodeOrderByCloseAsc("NFLX");
 
         lowestNetflixStocks.forEach(System.out::println);
     }
