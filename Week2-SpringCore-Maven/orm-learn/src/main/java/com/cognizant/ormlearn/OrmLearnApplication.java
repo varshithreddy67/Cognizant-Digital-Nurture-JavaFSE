@@ -37,6 +37,9 @@ public class OrmLearnApplication implements CommandLineRunner {
         testGetEmployeesByDepartment();
         testEmployeesBySalaryAndPermanent();
         testNativeQuery();
+        testCriteriaAPI();
+        testCriteriaSalary();
+        testCriteriaOrderBySalary();
 
         // Uncomment when needed
         // testAddCountry();
@@ -67,6 +70,33 @@ public class OrmLearnApplication implements CommandLineRunner {
                     System.out.println("- " + skill.getName())
             );
         }
+    }
+
+    private void testCriteriaOrderBySalary() {
+
+        System.out.println("\n--- Criteria API : Order By Salary DESC ---");
+
+        employeeService
+                .getEmployeesCriteriaOrderBySalary()
+                .forEach(System.out::println);
+    }
+
+    private void testCriteriaSalary() {
+
+        System.out.println("\n--- Criteria API : Salary > 60000 ---");
+
+        employeeService
+                .getEmployeesCriteriaBySalary(60000.0)
+                .forEach(System.out::println);
+    }
+
+    private void testCriteriaAPI() {
+
+        System.out.println("\n--- Criteria API ---");
+
+        employeeService
+                .getEmployeesCriteria()
+                .forEach(System.out::println);
     }
 
     private void testGetEmployeesByDepartment() {
