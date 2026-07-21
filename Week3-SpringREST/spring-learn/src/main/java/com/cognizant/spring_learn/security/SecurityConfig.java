@@ -43,7 +43,6 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/countries").hasRole("USER")
                         .requestMatchers("/countries").hasAnyRole("USER", "ADMIN")                        .anyRequest().authenticated()
                 );
 
