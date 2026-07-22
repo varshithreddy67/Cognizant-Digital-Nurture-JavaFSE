@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Student } from './student/student';
+import { Course } from './course/course';
 
 @Component({
   selector: 'app-root',
-  imports: [Student],
+  imports: [Course],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
