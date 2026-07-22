@@ -1,7 +1,17 @@
 <h2>Student Details</h2>
 
 <p><b>Name:</b> {{ studentName }}</p>
-
 <p><b>Course:</b> {{ course }}</p>
-
 <p><b>Batch:</b> {{ batch }}</p>
+
+<hr>
+
+<h3>Property Binding</h3>
+
+<img [src]="imageUrl" width="150"><hr>
+
+<h3>Event Binding</h3>
+
+<button (click)="showMessage()">
+    Click Me
+</button>

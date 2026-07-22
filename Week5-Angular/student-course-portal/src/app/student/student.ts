@@ -12,4 +12,10 @@ export class Student {
   course = "Java FSE";
   batch = "Cognizant Digital Nurture";
 
+  imageUrl = "angular.gif";
+
+  showMessage() {
+    alert("Welcome to Angular Data Binding!");
+  }
+
 }
