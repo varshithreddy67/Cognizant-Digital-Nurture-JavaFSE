@@ -1,30 +1,36 @@
 <h2>Course Component</h2>
 
-<hr>
 
 <h3>Two-Way Data Binding</h3>
 
 <label>Enter Student Name:</label>
-<br><br>
 
 <input type="text" [(ngModel)]="studentName">
 
-<p><b>Student Name:</b> {{ studentName }}</p>
+
+<p>
+<b>Student Name:</b> {{studentName}}
+</p>
+
 
 <hr>
+
 
 <h3>*ngIf Example</h3>
 
 <p *ngIf="showCourses">
-    Available Courses
+Available Courses
 </p>
 
-<hr>
 
 <h3>*ngFor Example</h3>
 
 <ul>
-    <li *ngFor="let course of courses">
-        {{ course }}
-    </li>
+
+<li *ngFor="let course of courses">
+
+{{course.id}} - {{course.name}}
+
+</li>
+
 </ul>

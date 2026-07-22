@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 import { CourseService } from '../services/course.service';
 
 @Component({
   selector: 'app-course',
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
   templateUrl: './course.html',
-  styleUrl: './course.css',
+  styleUrl: './course.css'
 })
 export class Course {
 
@@ -16,10 +18,17 @@ export class Course {
 
   showCourses = true;
 
-  courses: string[] = [];
+  courses: any[] = [];
 
-  constructor(private courseService: CourseService) {
-    this.courses = this.courseService.getCourses();
+  constructor(private courseService: CourseService) {}
+
+  ngOnInit() {
+
+    this.courseService.getCourses()
+      .subscribe(data => {
+        this.courses = data;
+      });
+
   }
 
 }

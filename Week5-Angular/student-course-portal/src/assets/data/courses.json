@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Java"
+  },
+  {
+    "id": 2,
+    "name": "Angular"
+  },
+  {
+    "id": 3,
+    "name": "Spring Boot"
+  },
+  {
+    "id": 4,
+    "name": "SQL"
+  },
+  {
+    "id": 5,
+    "name": "Git"
+  }
+]
