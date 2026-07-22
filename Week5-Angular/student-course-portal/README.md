@@ -1,59 +1,149 @@
-# StudentCoursePortal
+# Student Course Portal - Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.32.
+## 📌 Project Overview
 
-## Development server
+Student Course Portal is an Angular-based web application developed as part of the **Cognizant Digital Nurture Java Full Stack Engineer (Java FSE) Program - Week 5 Angular Exercises**.
 
-To start a local development server, run:
+This project demonstrates Angular core concepts including components, data binding, routing, services, HTTP client integration, forms, pipes, and unit testing.
 
-```bash
-ng serve
+The application provides a simple portal where users can view student details, browse courses, and register students using Angular features.
+
+---
+
+# 🚀 Technologies Used
+
+- Angular
+- TypeScript
+- HTML5
+- CSS3
+- RxJS
+- Jasmine
+- Karma
+- JSON
+- Git & GitHub
+
+---
+
+# ✨ Features Implemented
+
+## 1. Angular Components
+
+Created reusable Angular components:
+
+- Home Component
+- Student Component
+- Course Component
+- Register Component
+
+Each component handles a specific functionality of the Student Course Portal.
+
+---
+
+# 2. Angular Data Binding
+
+Implemented different types of Angular data binding.
+
+---
+
+## Interpolation
+
+Used to display component data in HTML.
+
+Example:
+
+```html
+{{ studentName }}
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Property Binding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Used to bind component properties with HTML elements.
 
-```bash
-ng generate component component-name
+Example:
+
+```html
+<img [src]="imageUrl">
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
+## Event Binding
+
+Used to handle user actions.
+
+Example:
+
+```html
+<button (click)="showMessage()">
+  Click Me
+</button>
 ```
 
-## Building
+---
 
-To build the project run:
+## Two-Way Data Binding
 
-```bash
-ng build
+Implemented using `ngModel`.
+
+Example:
+
+```html
+<input type="text" [(ngModel)]="studentName">
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+# 3. Angular Routing
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Implemented navigation using Angular Router.
 
-```bash
-ng test
+Available routes:
+
+| Route | Component |
+|---|---|
+| / | Home Component |
+| /student | Student Component |
+| /course | Course Component |
+| /register | Register Component |
+
+Navigation menu:
+
+- Home
+- Student
+- Course
+- Register
+
+---
+
+# 4. Angular Directives
+
+Implemented Angular structural directives.
+
+## ngIf
+
+Used for conditional rendering.
+
+Example:
+
+```html
+<p *ngIf="showCourses">
+  Available Courses
+</p>
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## ngFor
 
-```bash
-ng e2e
+Used to display course list dynamically.
+
+Example:
+
+```html
+<li *ngFor="let course of courses">
+  {{course.name}}
+</li>
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
