@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import { CourseService } from '../services/course.service';
+
 @Component({
   selector: 'app-course',
   imports: [CommonModule, FormsModule],
@@ -14,12 +16,10 @@ export class Course {
 
   showCourses = true;
 
-  courses = [
-    "Java",
-    "Angular",
-    "Spring Boot",
-    "SQL",
-    "Git"
-  ];
+  courses: string[] = [];
+
+  constructor(private courseService: CourseService) {
+    this.courses = this.courseService.getCourses();
+  }
 
 }
