@@ -20,6 +20,10 @@ export class Course {
 
   courses: any[] = [];
 
+  today = new Date();
+
+price = 5000;
+
   constructor(private courseService: CourseService) {}
 
   ngOnInit() {
