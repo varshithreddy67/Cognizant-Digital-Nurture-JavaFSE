@@ -55,7 +55,18 @@ Today Date:
 Price:
 {{price | currency:'INR'}}
 </p>
+<hr>
 
+<h2>Custom Pipe Example</h2>
+
+<p>
+Original Course: Java FSE
+</p>
+
+<p>
+Formatted Course:
+{{ 'Java FSE' | courseFormat }}
+</p>
 <ul>
 
 <li *ngFor="let course of courses">
